@@ -1,0 +1,104 @@
+                                     **Execution**
+
+                           JavaScript Execution Context(how to run js file)
+
+code -> Global execution (refer it in 'this' variable)
+
+1.Global execution context
+2.Function execution context
+
+3.Eval execution context(in mongo dB (its a object of global properties))
+
+{js code} -> run it in 2 phases
+
+           1. memory creation phase or creation phase (only allocate memory)
+	   2. Execution phase
+
+
+
+Example : 
+		let val1=10
+		let val2=5
+		function addnum(num1,num2){
+			let total = num1+num2
+			return total
+			}
+		let result1= addnum(val1,val2)
+		let result2= addnum(12,3)
+
+step1) Global execution -> this
+
+step2) creation phase(compulsory phase)
+	val1->undefined
+	val2->undefined
+	addnum->definition
+	result1->undefined
+	result2->undefined
+
+step3) execution phase
+	val1->10
+	val2->5
+	addnum->(make execution context box)->    new variable environment
+	(**each times function executes,		              +
+	a new box is created)			       execution thread 
+	(its called new executional context)                   |
+                                                               |
+                                                               |
+                                                    1.memory phase
+                                                      val1->undefined
+                                                      val2->undefined
+						      total->undefined
+						
+	                                            2.execution context(execution)
+					              num1=10
+                                                      num2=5
+                                                      total=15
+                                                      total value retuens in global execution context
+
+**after execution the new execution context box is deleted
+
+ in step3).....result1 -> 15
+	       result2-> (same things repeated)	
+
+
+
+
+
+                         **Call Stack**
+
+
+     |              |
+     |( )           |
+     |______________|
+     |Global exe    |     one()[this execute in call stack and then out it]
+     |______________|     two()[call this functions]     (same things repeated)
+
+
+concept : LIFO (last in first out (if there 2 calling happened, at first last one getting out))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
