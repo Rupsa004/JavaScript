@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <title>DOM</title>
+    <style>
+        .bg-black{
+            background-color: black;
+            color: aliceblue;
+        }
+    </style>
+</head>
+<body class="bg-black">
+    <div class="parent">
+    <div class="day">monday</div>
+    <div class="day">tuesday</div>
+    <div class="day">wednesday</div>    
+    <div class="day">thursday</div>
+    <div class="day">friday</div>    
+
+    </div>
+    
+</body>
+<script>
+const parent = document.querySelector('.parent')
+console.log(parent)
+console.log(parent.children)
+console.log(parent.children[2].innerHTML);
+for (let i = 0; i < parent.children.length; i++) {
+    console.log(parent.children[i].innerHTML);
+    
+}
+parent.children[1].style.color="blue"
+console.log(parent.firstelementChild);
+
+const dayOne = document.querySelector('.day')
+console.log(dayOne);
+console.log(dayOne.parentElement);
+console.log(dayOne.nextElementSibling);
+
+console.log("Nodes: ", parent.childNodes);
+
+const div = document.createElement('div')
+console.log(div);
+div.className = "main"
+div.id = Math.random()
+div.setAttribute("title" , "random")
+div.style.color="orange"
+const addText = document.createTextNode("learning js")
+div.appendChild(addText)
+document.body.appendChild(div)
+div.style.textAlign="center";
+</script>
+</html>
