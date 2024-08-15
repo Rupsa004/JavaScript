@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document on events</title>
+</head>
+<body style="background-color:#414141; color: antiquewhite;">
+    <h3>images</h3>
+    <div>
+        <ul id="images">
+            <li>
+                <img width="200px" id="pic" src="https://bakewithshivesh.com/wp-content/uploads/2022/04/IMG_9331-scaled.jpg" alt="pic">
+            </li>
+            <li>
+                <img width="200px" id="coffee" src="https://content.jdmagicbox.com/comp/def_content/coffee_shops/default-coffee-shops-4.jpg" alt="">
+            </li>
+            <li>
+                <img width="200px" id="tea" src="https://www.teaforturmeric.com/wp-content/uploads/2021/11/Masala-Chai-Tea-Recipe-Card.jpg" alt="">
+            </li>
+            <li>
+                <img width="200px" id="juice" src="https://www.eatingwell.com/thmb/NJFf9k59wViDdqO_0kp-Mc-KNH8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/3749033-b30c69279d9341468bb4cf5dab18c578.jpg" alt="">
+            </li>
+            <li>
+                <img width="200px" id="soft drink" src="https://www.orchidsandsweettea.com/wp-content/uploads/2022/02/Ginger-Peach-Mocktail-3-of-5.jpg" alt="">
+            </li>
+            <li><a style="color: antiquewhite;" href="https://www.google.com/" id="google">Google</a></li>
+        </ul>
+    </div>
+</body>
+<script>
+   /* document.getElementById('tea').onclick=function(){
+        alert("drinking tea")
+    }*/
+   document.getElementById('tea').addEventListener('click', function(){
+        alert("drinking tea")
+    }
+    ) //best
+
+    /*or some approaches:
+                    attachEvent()
+                    jQuery - onEventlistener*/
+    //imp events: type, timestamp, defaultPrevented , target , toelement , **srcElement , currentTarget
+    //altKey, ctrlkey , shiftkey , keycode
+
+    /*event object*/
+    document.getElementById('coffee').addEventListener('click' ,function(e){
+      console.log(e);  
+    },false)
+   
+   /*event propagation*/
+   
+   //false: propagate inside to outside :Bubbling phase
+
+   document.getElementById('images').addEventListener('click' ,function(e){
+      console.log("clicked inside the ul");  
+    },false)
+
+    document.getElementById('juice').addEventListener('click' ,function(e){
+      console.log("drinking juice");  
+    },false)
+
+
+    //true: top to bottom :capturing phase
+
+    document.getElementById('images').addEventListener('click' ,function(e){
+      console.log("clicked inside the ul");  
+    },true)
+
+    document.getElementById('juice').addEventListener('click' ,function(e){
+      console.log("drinking juice");  
+    },true)
+
+    //stopPropagation
+
+    document.getElementById('images').addEventListener('click' ,function(e){
+      console.log("clicked inside the ul");  
+    },false)
+
+    document.getElementById('juice').addEventListener('click' ,function(e){
+      console.log("drinking juice");
+      e.stopPropagation()  
+    },false)
+
+    /*preventDefault*/
+    document.getElementById('google').addEventListener('click', function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        console.log("google clicked");
+        
+    }, false)
+
+    /*------------------------------------------------*/
+
+    document.querySelector("#images").addEventListener('click' , function(e){
+        /*console.log(e.target);
+        console.log(e.target.parentNode);
+        let removeIt=e.target.parentNode
+        removeIt.remove()
+        //removeIt.parentNode.removeChild(removeIt)*/
+
+        console.log(e.target.tagName);
+        if(e.target.tagName==="IMG") {
+          console.log(e.target.id);
+          let removeIt=e.target.parentNode
+        removeIt.remove()}
+    },false)
+
+
+
+
+
+
+
+</script>
+</html>
